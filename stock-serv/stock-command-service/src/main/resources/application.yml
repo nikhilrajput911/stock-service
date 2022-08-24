@@ -1,0 +1,30 @@
+server:
+  port: 5000
+  servlet:
+    context-path: /stock-command-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: stockCommand
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+api:
+  add-stock:
+    description: 'REST API to add stock'
+    notes: 'This API is used to add stock of a company.'
+  delete-stock-by-company-code:
+    description: 'REST API to delete stock'
+    notes: 'This API is used to delete stocks of a company.'
