@@ -9,7 +9,16 @@ management:
       exposure:
         include: '*'
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      preferIpAddress: true
+
 spring:
+  application:
+    name: stock-query-service
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true

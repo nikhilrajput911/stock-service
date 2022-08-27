@@ -8,10 +8,12 @@ import com.iiht.stock.command.api.commands.DeleteStockPriceCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
 import javax.annotation.PostConstruct;
 
+@EnableEurekaClient
 @ComponentScan(basePackages = {"com.iiht.stock.command"})
 @SpringBootApplication
 public class CommandApplication {
