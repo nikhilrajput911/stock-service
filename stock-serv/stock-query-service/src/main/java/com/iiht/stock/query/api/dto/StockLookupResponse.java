@@ -16,6 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 public class StockLookupResponse extends BaseResponse {
     private List<StockDetails> stocks;
+    private Integer numberOfStock;
+    private double minStockPrice;
+    private double maxStockPrice;
+    private double avgStockPrice;
 
     public StockLookupResponse(String message) {
         super(message);

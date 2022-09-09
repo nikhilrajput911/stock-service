@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.MessageFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,10 +41,23 @@ public class StockLookupController {
             if (stocks == null || stocks.size() == 0) {
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
             }
+
+            double minStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).min().getAsDouble();
+            double maxStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).max().getAsDouble();
+            double avgStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).average().getAsDouble();
+            logger.info("minStockPrice: " + minStockPrice);
+            logger.info("maxStockPrice: " + maxStockPrice);
+            logger.info("avgStockPrice: " + avgStockPrice);
+
             StockLookupResponse response = StockLookupResponse.builder()
+                    .numberOfStock(stocks.size())
                     .stocks(stocks)
+                    .minStockPrice(new BigDecimal(minStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
+                    .maxStockPrice(new BigDecimal(maxStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
+                    .avgStockPrice(new BigDecimal(avgStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
                     .message(MessageFormat.format("Successfully returned {0} stock(s)!", stocks.size()))
                     .build();
+
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             String safeErrorMessage = "Failed to complete get all stocks request!";
@@ -58,10 +74,23 @@ public class StockLookupController {
             if (stocks == null || stocks.size() == 0) {
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
             }
+
+            double minStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).min().getAsDouble();
+            double maxStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).max().getAsDouble();
+            double avgStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).average().getAsDouble();
+            logger.info("minStockPrice: " + minStockPrice);
+            logger.info("maxStockPrice: " + maxStockPrice);
+            logger.info("avgStockPrice: " + avgStockPrice);
+
             StockLookupResponse response = StockLookupResponse.builder()
+                    .numberOfStock(stocks.size())
                     .stocks(stocks)
+                    .minStockPrice(new BigDecimal(minStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
+                    .maxStockPrice(new BigDecimal(maxStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
+                    .avgStockPrice(new BigDecimal(avgStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
                     .message(MessageFormat.format("Successfully returned {0} stock(s)!", stocks.size()))
                     .build();
+
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             String safeErrorMessage = "Failed to complete get stocks by company code request!";
@@ -87,10 +116,23 @@ public class StockLookupController {
             if (stocks == null || stocks.size() == 0) {
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
             }
+
+            double minStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).min().getAsDouble();
+            double maxStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).max().getAsDouble();
+            double avgStockPrice = stocks.stream().mapToDouble(StockDetails::getStockPrice).average().getAsDouble();
+            logger.info("minStockPrice: " + minStockPrice);
+            logger.info("maxStockPrice: " + maxStockPrice);
+            logger.info("avgStockPrice: " + avgStockPrice);
+
             StockLookupResponse response = StockLookupResponse.builder()
+                    .numberOfStock(stocks.size())
                     .stocks(stocks)
+                    .minStockPrice(new BigDecimal(minStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
+                    .maxStockPrice(new BigDecimal(maxStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
+                    .avgStockPrice(new BigDecimal(avgStockPrice).setScale(2, RoundingMode.HALF_UP).doubleValue())
                     .message(MessageFormat.format("Successfully returned {0} stock(s)!", stocks.size()))
                     .build();
+
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             String safeErrorMessage = "Failed to complete get stocks by created date request!";
