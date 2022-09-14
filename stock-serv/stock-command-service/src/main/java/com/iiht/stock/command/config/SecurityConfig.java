@@ -11,11 +11,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/stock-command-service/**").permitAll()
-                .antMatchers("/api/**", "/swagger-ui.html", "/webjars/**", "/v2/**", "/swagger-resources/**").anonymous()
-                .anyRequest().permitAll();
+        http
+            .httpBasic()
+            .and()
+            .cors().disable()
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/api/v1.0/market/stock/add").authenticated()
+            .antMatchers("/api/v1.0/market/stock/delete/byCompanyCode/**").authenticated()
+            .antMatchers("/api/**", "/swagger-ui.html", "/webjars/**", "/v2/**", "/swagger-resources/**").anonymous()
+            .anyRequest().permitAll().and().formLogin();
     }
 }

@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/api/v1.0/market/stock")
+@RequestMapping(path = "/api/v1.0/market/stock/delete")
 @Api(value = "REST APIs to delete stocks")
 public class DeleteStockController {
     private final Logger logger = Logger.getLogger(DeleteStockController.class.getName());

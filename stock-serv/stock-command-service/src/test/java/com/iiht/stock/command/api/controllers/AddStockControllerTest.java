@@ -74,7 +74,8 @@ public class AddStockControllerTest {
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/api/v1.0/market/stock/add")
                 .content(content)
-                .contentType(MediaType.APPLICATION_JSON);
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic YWRtaW46YWRtaW4=");
 
         MvcResult result = mockMvc.perform(request).andReturn();
         String responseAsString = result.getResponse().getContentAsString();
@@ -100,7 +101,8 @@ public class AddStockControllerTest {
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/api/v1.0/market/stock/add")
                 .content(content)
-                .contentType(MediaType.APPLICATION_JSON);
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic YWRtaW46YWRtaW4=");
 
         MvcResult result = mockMvc.perform(request).andReturn();
         String responseAsString = result.getResponse().getContentAsString();
@@ -126,7 +128,8 @@ public class AddStockControllerTest {
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/api/v1.0/market/stock/add")
                 .content(content)
-                .contentType(MediaType.APPLICATION_JSON);
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic YWRtaW46YWRtaW4=");
 
         MvcResult result = mockMvc.perform(request).andReturn();
         String responseAsString = result.getResponse().getContentAsString();

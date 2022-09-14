@@ -77,8 +77,9 @@ public class DeleteStockControllerTest {
         Mockito.when(kafkaTemplate.send(Matchers.anyString(), Matchers.any(BaseEvent.class))).thenReturn(responseFuture);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .delete("/api/v1.0/market/stock/byCompanyCode/CTS")
-                .contentType(MediaType.APPLICATION_JSON);
+                .delete("/api/v1.0/market/stock/delete/byCompanyCode/CTS")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic YWRtaW46YWRtaW4=");
 
         MvcResult result = mockMvc.perform(request).andReturn();
         String responseAsString = result.getResponse().getContentAsString();
@@ -95,8 +96,9 @@ public class DeleteStockControllerTest {
         Mockito.when(eventStoreRepository.findByEventTypeAndCompanyCode(Matchers.anyString(), Matchers.anyString())).thenThrow(new IllegalStateException());
 
         RequestBuilder request = MockMvcRequestBuilders
-                .delete("/api/v1.0/market/stock/byCompanyCode/CTS")
-                .contentType(MediaType.APPLICATION_JSON);
+                .delete("/api/v1.0/market/stock/delete/byCompanyCode/CTS")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic YWRtaW46YWRtaW4=");
 
         MvcResult result = mockMvc.perform(request).andReturn();
         String responseAsString = result.getResponse().getContentAsString();
@@ -113,8 +115,9 @@ public class DeleteStockControllerTest {
         Mockito.when(eventStoreRepository.findByEventTypeAndCompanyCode(Matchers.anyString(), Matchers.anyString())).thenThrow(new IllegalArgumentException());
 
         RequestBuilder request = MockMvcRequestBuilders
-                .delete("/api/v1.0/market/stock/byCompanyCode/CTS")
-                .contentType(MediaType.APPLICATION_JSON);
+                .delete("/api/v1.0/market/stock/delete/byCompanyCode/CTS")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic YWRtaW46YWRtaW4=");
 
         MvcResult result = mockMvc.perform(request).andReturn();
         String responseAsString = result.getResponse().getContentAsString();
